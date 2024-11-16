@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { MusicContext } from "../Context";
 
+
 function Card({ element }) {
   const musicContext = useContext(MusicContext);
   const likedMusic = musicContext.likedMusic;
@@ -49,7 +50,7 @@ function Card({ element }) {
 
   return (
     <div key={element.id} className="col-lg-3 col-md-6 py-2">
-      <div className="card">
+      <div className="card bg-light text-dark">
         <div className="ratio ratio-1x1 bg-secondary bg-opacity-25">
           <img
             src={element.album.images[0].url}

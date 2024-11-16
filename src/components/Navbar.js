@@ -10,6 +10,9 @@ const Navbar = ({ keyword, handleKeyPress, setKeyword, fetchMusicData }) => {
   const likedMusic = musicContext.likedMusic;
   const pinnedMusic = musicContext.pinnedMusic;
   const setResultOffset = musicContext.setResultOffset;
+
+  
+  
   return (
     <>
       <nav className="navbar navbar-dark navbar-expand-lg bg-dark sticky-top">
@@ -38,6 +41,7 @@ const Navbar = ({ keyword, handleKeyPress, setKeyword, fetchMusicData }) => {
                 className="nav-link btn mx-3"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
+                
               >
                 Trending
               </button>
@@ -76,7 +80,7 @@ const Navbar = ({ keyword, handleKeyPress, setKeyword, fetchMusicData }) => {
                 setResultOffset(0);
                 fetchMusicData();
               }}
-              className="btn btn-outline-success"
+              className="btn btn-outline-info"
             >
               Search
             </button>

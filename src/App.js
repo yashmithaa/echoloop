@@ -6,6 +6,8 @@ import { initializePlaylist } from "./initialize";
 import Navbar from "./components/Navbar";
 import { MusicContext } from "./Context";
 
+
+
 function App() {
   const [keyword, setKeyword] = useState("");
   const [message, setMessage] = useState("");
@@ -55,10 +57,12 @@ function App() {
     }
   };
 
+  
+
   useEffect(() => {
     initializePlaylist();
 
-    // current client credentials will be deleted in few days
+
     const fetchToken = async () => {
       try {
         const response = await fetch("https://accounts.spotify.com/api/token", {
@@ -119,7 +123,7 @@ function App() {
                 setResultOffset((previous) => previous - 20);
                 fetchMusicData();
               }}
-              className="btn btn-outline-success w-100"
+              className="btn btn-outline-info w-100"
               disabled={resultOffset === 0}
             >
               Previous Next Page: {resultOffset / 20}
@@ -131,7 +135,7 @@ function App() {
                 setResultOffset((previous) => previous + 20);
                 fetchMusicData();
               }}
-              className="btn btn-outline-success w-100"
+              className="btn btn-outline-info w-100"
             >
               Next Page: {resultOffset / 20 + 2}
             </button>
@@ -153,15 +157,7 @@ function App() {
           </div>
         </div>
       </div>
-      <div
-        className="modal fade position-absolute"
-        id="exampleModal"
-        tabIndex={-1}
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <CreatePlaylist />
-      </div>
+      
     </>
   );
 }
