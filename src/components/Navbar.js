@@ -37,18 +37,14 @@ const Navbar = ({ keyword, handleKeyPress, setKeyword, fetchMusicData }) => {
                 </button>
               </li>
               <li className="nav-item">
-              <Link className="nav-link" to="/trending">
+              <Link className="nav-link mx-4" to="/trending">
                   Trending
                 </Link>
               </li>
               <li className="nav-item">
-              <button
-                className="nav-link btn mx-2"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-              >
-              Library
-              </button>
+              <Link className="nav-link" to="/library">
+                  Library
+                </Link>
               </li>
               <li className="nav-item">
               <button
