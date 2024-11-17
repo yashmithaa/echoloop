@@ -1,12 +1,14 @@
 import "./App.css";
 import { useContext, useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import Card from "./components/Card";
 import CreatePlaylist from "./components/CreatePlaylist";
 import { initializePlaylist } from "./initialize";
 import Navbar from "./components/Navbar";
 import { MusicContext } from "./Context";
-
-
+import Landing from "./pages/Landing";
+import TrendingPage from "./pages/TrendingPage";
+import Library from "./pages/Library";
 
 function App() {
   const [keyword, setKeyword] = useState("");
@@ -22,7 +24,7 @@ function App() {
   const resultOffset = musicContext.resultOffset;
   const setResultOffset = musicContext.setResultOffset;
 
-  const fetchMusicData = async () => { //Fetches tracks from the Spotify API's Search Endpoint.
+  const fetchMusicData = async () => {
     setTracks([]);
     window.scrollTo(0, 0);
     setIsLoading(true);
@@ -57,11 +59,8 @@ function App() {
     }
   };
 
-  
-
   useEffect(() => {
     initializePlaylist();
-
 
     const fetchToken = async () => {
       try {
@@ -98,66 +97,11 @@ function App() {
         handleKeyPress={handleKeyPress}
         fetchMusicData={fetchMusicData}
       />
-
-      <div className="container">
-        <div className={`row ${isLoading ? "" : "d-none"}`}>
-          <div className="col-12 py-5 text-center">
-            <div
-              className="spinner-border"
-              style={{ width: "3rem", height: "3rem" }}
-              role="status"
-            >
-              <span className="visually-hidden">Loading...</span>
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          {tracks.map((element) => {
-            return <Card key={element.id} element={element} />;
-          })}
-        </div>
-        <div className="row" hidden={tracks.length === 0}>
-          <div className="col">
-            <button
-              onClick={() => {
-                setResultOffset((previous) => previous - 20);
-                fetchMusicData();
-              }}
-              className="btn btn-outline-info w-100"
-              disabled={resultOffset === 0}
-            >
-              Previous Next Page: {resultOffset / 20}
-            </button>
-          </div>
-          <div className="col">
-            <button
-              onClick={() => {
-                setResultOffset((previous) => previous + 20);
-                fetchMusicData();
-              }}
-              className="btn btn-outline-info w-100"
-            >
-              Next Page: {resultOffset / 20 + 2}
-            </button>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col">
-            <h4 className="text-center text-danger py-2">{message}</h4>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12 py-5 text-center">
-            <h1>
-              <i className="bi bi-music-note-list mx-3"></i>
-              Melodify
-            </h1>
-            <h3 className="py-5">Your Personal Jukebox, Anywhere</h3>
-            
-          </div>
-        </div>
-      </div>
-      
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/trending" element={<TrendingPage />} />
+        <Route path="/library" element={<Library />} />
+      </Routes>
     </>
   );
 }

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { MusicContext } from "../Context";
 
-
 function Card({ element }) {
   const musicContext = useContext(MusicContext);
   const likedMusic = musicContext.likedMusic;
@@ -63,7 +62,6 @@ function Card({ element }) {
           <h5 className="card-title d-flex justify-content-between">
             {element.name}
             <div className="add-options d-flex align-items-start">
-              
               {likedMusic.some((item) => item.id === element.id) ? (
                 <button onClick={handleLike} className="btn ">
                   <i className="bi bi-heart-fill text-danger"></i>
@@ -73,11 +71,10 @@ function Card({ element }) {
                   <i className="bi bi-heart"></i>
                 </button>
               )}
-              
             </div>
           </h5>
           <p className="card-text">Artist: {element.album.artists[0].name}</p>
-          
+
           <audio src={element.preview_url} controls className="w-100"></audio>
         </div>
       </div>
