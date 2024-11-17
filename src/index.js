@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 // import { BrowserRouter } from "react-router-dom";
 import { ContextProvider } from "./Context";
-
+import Library from "./pages/Library";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -18,7 +18,11 @@ const router = createBrowserRouter([
   },
   {
     path:"trending",
-    element:<TrendingPage />
+    element:<ContextProvider><TrendingPage /></ContextProvider>
+  },
+  {
+    path:"library",
+    element:<ContextProvider><Library/></ContextProvider>
   }
 ]);
 
