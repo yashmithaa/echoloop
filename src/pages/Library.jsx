@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 import bollywoodImg from "../assets/genres/bollywood.jpg";
 import popImg from "../assets/genres/pop.jpg";
@@ -72,6 +73,7 @@ const Library = () => {
           </div>
         ))}
       </div>
+      <Footer/>
     </div>
   );
 };

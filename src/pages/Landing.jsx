@@ -1,8 +1,8 @@
 import Card from "../components/Card";
 import { useContext} from "react";
 import { MusicContext } from "../Context";
-
-export default function Landing() {
+import Footer from "../components/Footer";
+function Landing() {
   const {
     isLoading,
     tracks = [],
@@ -63,16 +63,9 @@ export default function Landing() {
             <h4 className="text-center text-danger py-2">{message}</h4>
           </div>
         </div>
-        <div className="row">
-          <div className="col-12 py-5 text-center">
-            <h1>
-              <i className="bi bi-music-note-list mx-3"></i>
-              Melodify
-            </h1>
-            <h3 className="py-5">Your Personal Jukebox, Anywhere</h3>
-          </div> 
-        </div>
+        <Footer/>
       </div>
     </>
   );
 }
+export default Landing;

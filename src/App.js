@@ -1,29 +1,32 @@
 import "./App.css";
 import { useContext, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import Card from "./components/Card";
-import CreatePlaylist from "./components/CreatePlaylist";
 import { initializePlaylist } from "./initialize";
 import Navbar from "./components/Navbar";
 import { MusicContext } from "./Context";
 import Landing from "./pages/Landing";
 import TrendingPage from "./pages/TrendingPage";
 import Library from "./pages/Library";
-
+import GenrePage from "./components/GenrePage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   const [keyword, setKeyword] = useState("");
   const [message, setMessage] = useState("");
   const [tracks, setTracks] = useState([]);
   const [token, setToken] = useState(null);
-
-  const musicContext = useContext(MusicContext);
-  const isLoading = musicContext.isLoading;
-  const setIsLoading = musicContext.setIsLoading;
-  const setLikedMusic = musicContext.setLikedMusic;
-  const setpinnedMusic = musicContext.setPinnedMusic;
-  const resultOffset = musicContext.resultOffset;
-  const setResultOffset = musicContext.setResultOffset;
+  const [isLoading, setIsLoading] = useState(true);
+  const [likedMusic, setLikedMusic] = useState([]);
+  const [pinnedMusic, setPinnedMusic] = useState([]);
+  const [resultOffset, setResultOffset] = useState(0);
+  
+  // const musicContext = useContext(MusicContext);
+  // const isLoading = musicContext.isLoading;
+  // const setIsLoading = musicContext.setIsLoading;
+  // const setLikedMusic = musicContext.setLikedMusic;
+  // const setpinnedMusic = musicContext.setPinnedMusic;
+  // const resultOffset = musicContext.resultOffset;
+  // const setResultOffset = musicContext.setResultOffset;
 
   const fetchMusicData = async () => {
     setTracks([]);
@@ -88,11 +91,23 @@ function App() {
     };
     fetchToken();
     setLikedMusic(JSON.parse(localStorage.getItem("likedMusic")));
-    setpinnedMusic(JSON.parse(localStorage.getItem("pinnedMusic")));
-  }, [setIsLoading, setLikedMusic, setpinnedMusic]);
+    // setpinnedMusic(JSON.parse(localStorage.getItem("pinnedMusic")));
+  }, [setIsLoading, setLikedMusic]);
 
   return (
-    <>
+    <MusicContext.Provider
+      value={{
+        token,
+        isLoading,
+        setIsLoading,
+        likedMusic,
+        setLikedMusic,
+        pinnedMusic,
+        setPinnedMusic,
+        resultOffset,
+        setResultOffset,
+      }}
+    >
       <Navbar
         keyword={keyword}
         setKeyword={setKeyword}
@@ -103,9 +118,10 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/trending" element={<TrendingPage />} />
         <Route path="/library" element={<Library />} />
-        
+        <Route path="/genre/:genre" element={<GenrePage />} />
+        <Route path="/search" element={<SearchPage />} />
       </Routes>
-    </>
+    </MusicContext.Provider>
   );
 }
 

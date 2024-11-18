@@ -46,6 +46,11 @@ const Navbar = ({ keyword, handleKeyPress, setKeyword, fetchMusicData }) => {
                   Library
                 </Link>
               </li>
+              <li className="nav-item mx-4">
+              <Link className="nav-link" to="/search">
+                  Search
+              </Link>
+              </li>
               <li className="nav-item">
               <button
                 className="nav-link btn mx-3"
@@ -57,7 +62,7 @@ const Navbar = ({ keyword, handleKeyPress, setKeyword, fetchMusicData }) => {
               </li>
               
             </ul>
-            <input
+            {/* <input
               value={keyword}
               onChange={(event) => setKeyword(event.target.value)}
               onKeyDown={handleKeyPress}
@@ -74,7 +79,7 @@ const Navbar = ({ keyword, handleKeyPress, setKeyword, fetchMusicData }) => {
               className="btn btn-outline-info"
             >
               Search
-            </button>
+            </button> */}
             
           </div>
         </div>
