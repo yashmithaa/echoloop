@@ -13,9 +13,12 @@ function TrendingPage(){
         if (!token) return; // Wait until the token is available
       
         const fetchTrendingSongs = async () => {
+          setTrendingTracks([]);
+          window.scrollTo(0, 0);
+          setIsLoading(true);
           try {
             const response = await fetch(
-              `https://api.spotify.com/v1/browse/featured-playlists`,
+              `https://api.spotify.com/v1/search?q=tag:new&type=track&offset=0`,
               {
                 headers: {
                   Authorization: `Bearer ${token}`,
@@ -28,7 +31,8 @@ function TrendingPage(){
             }
       
             const jsonData = await response.json();
-            setTrendingTracks(jsonData.playlists.items);
+            setTrendingTracks(jsonData.tracks.items);
+            console.log(jsonData.tracks.items);
           } catch (error) {
             console.error(error);
           } finally {
@@ -56,7 +60,7 @@ function TrendingPage(){
         </div>
         <div className="row">
           {trendingTracks.map((track) => (
-            <li key={track.id}>{track.name}</li>
+            <Card key={track.id} element={track} />
           ))}
         </div>
         {/* {isLoading ? (
