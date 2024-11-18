@@ -10,6 +10,7 @@ import Landing from "./pages/Landing";
 import TrendingPage from "./pages/TrendingPage";
 import Library from "./pages/Library";
 
+
 function App() {
   const [keyword, setKeyword] = useState("");
   const [message, setMessage] = useState("");
@@ -45,6 +46,7 @@ function App() {
       const jsonData = await response.json();
 
       setTracks(jsonData.tracks.items);
+      console.log(jsonData.tracks.items);
     } catch (error) {
       setMessage(error.message);
     } finally {
@@ -101,6 +103,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/trending" element={<TrendingPage />} />
         <Route path="/library" element={<Library />} />
+        
       </Routes>
     </>
   );

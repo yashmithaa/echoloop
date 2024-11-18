@@ -1,5 +1,5 @@
 import Card from "../components/Card";
-import { useContext } from "react";
+import { useContext} from "react";
 import { MusicContext } from "../Context";
 
 export default function Landing() {
@@ -12,6 +12,7 @@ export default function Landing() {
     setResultOffset,
   } = useContext(MusicContext);
 
+  
   return (
     <>
       <div className="container">
@@ -23,6 +24,7 @@ export default function Landing() {
               role="status"
             >
               <span className="visually-hidden">Loading...</span>
+              
             </div>
           </div>
         </div>
@@ -41,7 +43,7 @@ export default function Landing() {
               className="btn btn-outline-info w-100"
               disabled={resultOffset === 0}
             >
-              Previous Next Page: {resultOffset / 20}
+              Previous Page: {resultOffset / 20}
             </button>
           </div>
           <div className="col">
@@ -68,7 +70,7 @@ export default function Landing() {
               Melodify
             </h1>
             <h3 className="py-5">Your Personal Jukebox, Anywhere</h3>
-          </div>
+          </div> 
         </div>
       </div>
     </>
