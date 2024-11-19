@@ -70,7 +70,7 @@ function TrendingPage() {
   }
 
   return (
-    <div className="container py-5">
+    <div className="container py-5 text-light">
       <h1>Trending Songs</h1>
       {isLoading ? (
         <div className="row">

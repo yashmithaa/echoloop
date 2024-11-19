@@ -15,7 +15,7 @@ const Navbar = ({ keyword, handleKeyPress, setKeyword, fetchMusicData }) => {
   
   return (
     <>
-      <nav className="navbar navbar-dark navbar-expand-lg bg-dark sticky-top">
+      <nav className="navbar navbar-dark navbar-expand-lg bg-info sticky-top">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             <i className="bi bi-soundwave mx-1"></i> Echoloop
@@ -27,6 +27,11 @@ const Navbar = ({ keyword, handleKeyPress, setKeyword, fetchMusicData }) => {
             id="navbarSupportedContent"
           >
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 mx-5">
+            <li className="nav-item">
+              <Link className="nav-link mx-4" to="/">
+                  Home
+                </Link>
+              </li>
               <li className="nav-item">
                 <button
                   className="nav-link"
@@ -113,14 +118,14 @@ const Navbar = ({ keyword, handleKeyPress, setKeyword, fetchMusicData }) => {
       </div>
 
       <div
-        className="modal fade modal-xl"
+        className="modal fade modal-xl "
         id="likedMusicModal"
         tabIndex={1}
         aria-labelledby="likedMusicModalLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog">
-          <div className="modal-content">
+          <div className="modal-content bg-dark">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="likedMusicModalLabel">
                 Liked Music

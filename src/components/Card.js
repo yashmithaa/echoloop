@@ -49,7 +49,7 @@ function Card({ element }) {
 
   return (
     <div key={element.id} className="col-lg-3 col-md-6 py-2">
-      <div className="card bg-light text-dark">
+      <div className="card bg-dark text-light" style={{ border: "0.5px solid cyan", transition: "0.3s" }}>
         <div className="ratio ratio-1x1 bg-secondary bg-opacity-25">
           <img
             src={element.album.images[0].url}
@@ -73,7 +73,7 @@ function Card({ element }) {
               )}
             </div>
           </h5>
-          <p className="card-text">Artist: {element.album.artists[0].name}</p>
+          <p className="card-text">{element.album.artists[0].name}</p>
 
           <audio src={element.preview_url} controls className="w-100"></audio>
         </div>
