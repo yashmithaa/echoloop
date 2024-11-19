@@ -83,7 +83,8 @@ function SearchPage() {
                                 setResultOffset(0);
                                 fetchSearchResults();
                             }}
-                            className="btn btn-info text-light"
+                            className="btn"
+                            style={{ background: "#CBFF2E", color:"#070A26"}}
                             disabled={isLoading}
                         >
                             {isLoading ? (
@@ -119,7 +120,8 @@ function SearchPage() {
                     <div className="col">
                         <button
                             onClick={() => setResultOffset(prev => Math.max(0, prev - 20))}
-                            className="btn btn-outline-info w-100"
+                            className="btn w-100"
+                            style={{ background: "#CBFF2E", color:"#070A26"}}
                             disabled={resultOffset === 0}
                         >
                             Previous Page: {resultOffset / 20}
@@ -128,7 +130,8 @@ function SearchPage() {
                     <div className="col">
                         <button
                             onClick={() => setResultOffset(prev => prev + 20)}
-                            className="btn btn-outline-info w-100"
+                            className="btn w-100"
+                            style={{ background: "#CBFF2E", color:"#070A26"}}
                         >
                             Next Page: {resultOffset / 20 + 2}
                         </button>

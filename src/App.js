@@ -1,5 +1,5 @@
 import "./App.css";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { initializePlaylist } from "./initialize";
 import Navbar from "./components/Navbar";
@@ -10,7 +10,7 @@ import Library from "./pages/Library";
 import GenrePage from "./components/GenrePage";
 import SearchPage from "./pages/SearchPage";
 import Profile from "./pages/Profile";
-
+import Fav from "./pages/Fav";
 
 function App() {
   const [keyword, setKeyword] = useState("");
@@ -123,6 +123,7 @@ function App() {
         <Route path="/genre/:genre" element={<GenrePage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/fav" element={<Fav />} />
       </Routes>
     </MusicContext.Provider>
   );

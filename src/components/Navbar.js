@@ -1,128 +1,28 @@
-import React, { useContext } from "react";
-
+import React from "react";
 import { Link } from "react-router-dom";
-import { MusicContext } from "../Context";
-import PinnedMusic from "./PinnedMusic";
-import LikedMusic from "./LikedMusic";
+import "../Navbar.css";
 
-const Navbar = ({ keyword, handleKeyPress, setKeyword, fetchMusicData }) => {
-  const musicContext = useContext(MusicContext);
-  const likedMusic = musicContext.likedMusic;
-  const pinnedMusic = musicContext.pinnedMusic;
-  const setResultOffset = musicContext.setResultOffset;
-
-  
-  
+const Navbar = () => {
   return (
-    <>
-      <nav className="navbar navbar-dark navbar-expand-lg bg-info sticky-top">
-        <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
-            <i className="bi bi-soundwave mx-1"></i> Echoloop
-          </Link>
-          
-
-          <div
-            className="collapse navbar-collapse d-flex justify-content-center"
-            id="navbarSupportedContent"
-          >
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0 mx-5">
-            <li className="nav-item">
-              <Link className="nav-link mx-4 my-2" to="/">
-                  Home
-                </Link>
-              </li>
-              <li className="nav-item my-2">
-                <button
-                  className="nav-link"
-                  data-bs-toggle="modal"
-                  data-bs-target="#likedMusicModal"
-                >
-                  Favourites
-                </button>
-              </li>
-              <li className="nav-item my-2">
-              <Link className="nav-link mx-4" to="/trending">
-                  Trending
-                </Link>
-              </li>
-              <li className="nav-item my-2">
-              <Link className="nav-link" to="/library">
-                  Library
-                </Link>
-              </li>
-              <li className="nav-item mx-4 my-2">
-              <Link className="nav-link" to="/search">
-                  Search
-              </Link>
-              </li>
-              <li className="nav-item my-2 ">
-              <Link className="nav-link" to="/profile">
-              <i class="bi bi-person-circle"></i>
-              </Link>
-              </li>
-              
-            </ul>
+    <nav className="echoloop-navbar">
+      <div className="navbar-container">
+        <Link className="navbar-brand" to="/">
+        <i class="bi bi-soundwave mx-3"></i> Echoloop
+        </Link>
+        
+        <div className="navbar-menu">
+          <ul className="navbar-links">
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/search">Search</Link></li>
             
-            
-          </div>
-        </div>
-      </nav>
-
-      <div
-        className="modal fade modal-xl"
-        id="exampleModal"
-        tabIndex={1}
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Pinned Music
-              </h1>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              />
-            </div>
-            <div className="modal-body">
-              <PinnedMusic />
-            </div>
-          </div>
+            <li><Link to="/trending">Trending</Link></li>
+            <li><Link to="/library">Library</Link></li>
+            <li><Link to="/fav">Favourites</Link></li>
+            <li><Link to="/profile">Profile</Link></li>
+          </ul>
         </div>
       </div>
-
-      <div
-        className="modal fade modal-xl "
-        id="likedMusicModal"
-        tabIndex={1}
-        aria-labelledby="likedMusicModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog">
-          <div className="modal-content bg-dark">
-            <div className="modal-header">
-              <h1 className="modal-title fs-5" id="likedMusicModalLabel">
-                Liked Music
-              </h1>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              />
-            </div>
-            <div className="modal-body">
-              <LikedMusic />
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+    </nav>
   );
 };
 

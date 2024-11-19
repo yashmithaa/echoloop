@@ -49,7 +49,8 @@ function Card({ element }) {
 
   return (
     <div key={element.id} className="col-lg-3 col-md-6 py-2">
-      <div className="card bg-dark text-light h-100" style={{ border: "0.5px solid cyan", transition: "0.3s" }}>
+    
+      <div className="card text-light h-100" style={{ border: "0.5px solid #CBFF2E", transition: "0.3s", background: "#141523" }}>
         <div className="ratio ratio-1x1 bg-secondary bg-opacity-25">
           <img
             src={element.album.images[0].url}
