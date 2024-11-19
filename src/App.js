@@ -9,6 +9,8 @@ import TrendingPage from "./pages/TrendingPage";
 import Library from "./pages/Library";
 import GenrePage from "./components/GenrePage";
 import SearchPage from "./pages/SearchPage";
+import Profile from "./pages/Profile";
+
 
 function App() {
   const [keyword, setKeyword] = useState("");
@@ -120,6 +122,7 @@ function App() {
         <Route path="/library" element={<Library />} />
         <Route path="/genre/:genre" element={<GenrePage />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </MusicContext.Provider>
   );

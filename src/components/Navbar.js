@@ -28,11 +28,11 @@ const Navbar = ({ keyword, handleKeyPress, setKeyword, fetchMusicData }) => {
           >
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 mx-5">
             <li className="nav-item">
-              <Link className="nav-link mx-4" to="/">
+              <Link className="nav-link mx-4 my-2" to="/">
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item my-2">
                 <button
                   className="nav-link"
                   data-bs-toggle="modal"
@@ -41,50 +41,29 @@ const Navbar = ({ keyword, handleKeyPress, setKeyword, fetchMusicData }) => {
                   Favourites
                 </button>
               </li>
-              <li className="nav-item">
+              <li className="nav-item my-2">
               <Link className="nav-link mx-4" to="/trending">
                   Trending
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item my-2">
               <Link className="nav-link" to="/library">
                   Library
                 </Link>
               </li>
-              <li className="nav-item mx-4">
+              <li className="nav-item mx-4 my-2">
               <Link className="nav-link" to="/search">
                   Search
               </Link>
               </li>
-              <li className="nav-item">
-              <button
-                className="nav-link btn mx-3"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-              >
-                <i class="bi bi-person-circle mx-2"></i>Profile
-              </button>
+              <li className="nav-item my-2 ">
+              <Link className="nav-link" to="/profile">
+              <i class="bi bi-person-circle"></i>
+              </Link>
               </li>
               
             </ul>
-            {/* <input
-              value={keyword}
-              onChange={(event) => setKeyword(event.target.value)}
-              onKeyDown={handleKeyPress}
-              className="form-control me-1 w-25"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button
-              onClick={() => {
-                setResultOffset(0);
-                fetchMusicData();
-              }}
-              className="btn btn-outline-info"
-            >
-              Search
-            </button> */}
+            
             
           </div>
         </div>
