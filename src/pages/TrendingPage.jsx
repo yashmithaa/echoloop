@@ -18,7 +18,7 @@ function TrendingPage() {
       window.scrollTo(0, 0);
       setIsLoading(true);
       try {
-        // First get the top playlists
+        
         const playlistResponse = await fetch(
           'https://api.spotify.com/v1/browse/featured-playlists?limit=1',
           {
@@ -35,7 +35,7 @@ function TrendingPage() {
         const playlistData = await playlistResponse.json();
         const playlistId = playlistData.playlists.items[0].id;
 
-        // Then get the tracks from the first playlist
+        // tracks from the first playlist
         const tracksResponse = await fetch(
           `https://api.spotify.com/v1/playlists/${playlistId}/tracks?limit=20`,
           {
@@ -50,10 +50,10 @@ function TrendingPage() {
         }
 
         const tracksData = await tracksResponse.json();
-        // Extract the track objects from the playlist items
+        
         const tracks = tracksData.items.map(item => item.track).filter(track => track !== null);
         setTrendingTracks(tracks);
-        console.log('Fetched tracks:', tracks);
+        
       } catch (error) {
         console.error('Error fetching tracks:', error);
         setError(error.message);

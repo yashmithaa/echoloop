@@ -49,7 +49,7 @@ function Card({ element }) {
 
   return (
     <div key={element.id} className="col-lg-3 col-md-6 py-2">
-      <div className="card bg-dark text-light" style={{ border: "0.5px solid cyan", transition: "0.3s" }}>
+      <div className="card bg-dark text-light h-100" style={{ border: "0.5px solid cyan", transition: "0.3s" }}>
         <div className="ratio ratio-1x1 bg-secondary bg-opacity-25">
           <img
             src={element.album.images[0].url}
@@ -58,7 +58,7 @@ function Card({ element }) {
           />
         </div>
 
-        <div className="card-body">
+        <div className="card-body d-flex flex-column">
           <h5 className="card-title d-flex justify-content-between">
             {element.name}
             <div className="add-options d-flex align-items-start">
@@ -75,7 +75,7 @@ function Card({ element }) {
           </h5>
           <p className="card-text">{element.album.artists[0].name}</p>
 
-          <audio src={element.preview_url} controls className="w-100"></audio>
+          <audio src={element.preview_url} controls className="w-100 mt-auto"></audio>
         </div>
       </div>
     </div>

@@ -10,7 +10,8 @@ function SearchPage() {
     const [error, setError] = useState(null);
     const { token } = useContext(MusicContext);
     const [resultOffset, setResultOffset] = useState(0);
-    const RESULTS_PER_PAGE = 20;
+    const [message, setMessage] = useState("");
+    
 
     const fetchSearchResults = async () => {
         if (!keyword.trim()) {
@@ -20,10 +21,11 @@ function SearchPage() {
 
         setIsLoading(true);
         setError(null);
+        setMessage("");
 
         try {
             const response = await fetch(
-                `https://api.spotify.com/v1/search?q=${encodeURIComponent(keyword)}&type=track&offset=${resultOffset}&limit=${RESULTS_PER_PAGE}`,
+                `https://api.spotify.com/v1/search?q=${keyword}&type=track&offset=${resultOffset}&limit=20`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -36,8 +38,11 @@ function SearchPage() {
             }
 
             const data = await response.json();
+            if (data.tracks.items.length === 0) {
+                setMessage("No more results to show");
+            }
             setSearchResults(data.tracks.items);
-            console.log('Search results:', data.tracks.items);
+            
         } catch (error) {
             console.error('Search error:', error);
             setError(error.message);
@@ -53,12 +58,8 @@ function SearchPage() {
         }
     };
 
-    const loadMore = () => {
-        setResultOffset(prev => prev + RESULTS_PER_PAGE);
-    };
-
     useEffect(() => {
-        if (resultOffset > 0) {
+        if (resultOffset >= 0) {
             fetchSearchResults();
         }
     }, [resultOffset]);
@@ -82,13 +83,13 @@ function SearchPage() {
                                 setResultOffset(0);
                                 fetchSearchResults();
                             }}
-                            className="btn btn-primary"
+                            className="btn btn-info text-light"
                             disabled={isLoading}
                         >
                             {isLoading ? (
-                                <span className="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                                <span className=" mx-1" role="status" aria-hidden="true"></span>
                             ) : (
-                                <i className="bi bi-search me-1"></i>
+                                <i className="bi mx-1"></i>
                             )}
                             Search
                         </button>
@@ -101,7 +102,7 @@ function SearchPage() {
                 </div>
             </div>
 
-            {/* Search Results */}
+            
             <div className="row">
                 {searchResults.length > 0 && (
                     <div className="col-12 mb-4">
@@ -113,32 +114,34 @@ function SearchPage() {
                 ))}
             </div>
 
-            {/* No Results Message */}
-            {!isLoading && keyword && searchResults.length === 0 && (
-                <div className="text-center text-white mt-5">
-                    <h3>No results found</h3>
-                    <p>Try adjusting your search terms</p>
-                </div>
-            )}
-
-            {/* Load More Button */}
-            {searchResults.length > 0 && searchResults.length >= RESULTS_PER_PAGE && (
+            {searchResults.length > 0 && (
                 <div className="row mt-4">
-                    <div className="col-12 text-center">
+                    <div className="col">
                         <button
-                            className="btn btn-outline-light"
-                            onClick={loadMore}
-                            disabled={isLoading}
+                            onClick={() => setResultOffset(prev => Math.max(0, prev - 20))}
+                            className="btn btn-outline-info w-100"
+                            disabled={resultOffset === 0}
                         >
-                            {isLoading ? (
-                                <span className="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
-                            ) : (
-                                'Load More'
-                            )}
+                            Previous Page: {resultOffset / 20}
+                        </button>
+                    </div>
+                    <div className="col">
+                        <button
+                            onClick={() => setResultOffset(prev => prev + 20)}
+                            className="btn btn-outline-info w-100"
+                        >
+                            Next Page: {resultOffset / 20 + 2}
                         </button>
                     </div>
                 </div>
             )}
+
+            
+            <div className="row">
+                <div className="col">
+                    <h4 className="text-center text-danger py-2">{message}</h4>
+                </div>
+            </div>
 
             <Footer />
         </div>
