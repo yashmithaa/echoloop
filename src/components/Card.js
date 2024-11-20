@@ -5,26 +5,7 @@ function Card({ element }) {
   const musicContext = useContext(MusicContext);
   const likedMusic = musicContext.likedMusic;
   const setlikedMusic = musicContext.setLikedMusic;
-  const pinnedMusic = musicContext.pinnedMusic;
-  const setpinnedMusic = musicContext.setPinnedMusic;
-
-  const handlePin = () => {
-    let pinnedMusic = localStorage.getItem("pinnedMusic");
-    pinnedMusic = JSON.parse(pinnedMusic);
-    let updatedPinnedMusic = [];
-    if (pinnedMusic.some((item) => item.id === element.id)) {
-      updatedPinnedMusic = pinnedMusic.filter((item) => item.id !== element.id);
-      setpinnedMusic(updatedPinnedMusic);
-      localStorage.setItem("pinnedMusic", JSON.stringify(updatedPinnedMusic));
-    } else {
-      if (pinnedMusic.length >= 4) {
-      }
-      updatedPinnedMusic = pinnedMusic;
-      updatedPinnedMusic.push(element);
-      setpinnedMusic(updatedPinnedMusic);
-      localStorage.setItem("pinnedMusic", JSON.stringify(updatedPinnedMusic));
-    }
-  };
+ 
 
   const handleLike = () => {
     let likedMusic = localStorage.getItem("likedMusic");

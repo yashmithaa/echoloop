@@ -31,7 +31,7 @@ function GenrePage() {
       setTracks([]);
       setIsLoading(true);
       try {
-        // First get recommendations based on genre
+        
         const response = await fetch(
           `https://api.spotify.com/v1/recommendations?limit=20&seed_genres=${genreSeeds[genre.toLowerCase()]}&min_popularity=50`,
           {

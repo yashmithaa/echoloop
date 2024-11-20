@@ -11,6 +11,9 @@ import GenrePage from "./components/GenrePage";
 import SearchPage from "./pages/SearchPage";
 import Profile from "./pages/Profile";
 import Fav from "./pages/Fav";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
   const [keyword, setKeyword] = useState("");
@@ -93,7 +96,7 @@ function App() {
     };
     fetchToken();
     setLikedMusic(JSON.parse(localStorage.getItem("likedMusic")));
-    // setpinnedMusic(JSON.parse(localStorage.getItem("pinnedMusic")));
+    
   }, [setIsLoading, setLikedMusic]);
 
   return (
@@ -110,12 +113,7 @@ function App() {
         setResultOffset,
       }}
     >
-      <Navbar
-        keyword={keyword}
-        setKeyword={setKeyword}
-        handleKeyPress={handleKeyPress}
-        fetchMusicData={fetchMusicData}
-      />
+      <Navbar/>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/trending" element={<TrendingPage />} />
@@ -124,6 +122,9 @@ function App() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/fav" element={<Fav />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Signup />} />
       </Routes>
     </MusicContext.Provider>
   );
